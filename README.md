@@ -75,13 +75,6 @@ The environment serves as a learning platform where I can deploy, maintain, trou
 - Tailscale Remote Access
 - KVM Virtualization
 
-## Repository Structure
-
-homelab/
-├── docs/
-├── diagrams/
-├── images/
-└── README.md
 
 ## Learning Focus
 
