@@ -1,0 +1,34 @@
+flowchart TD
+    Internet[Internet] --> VPS[Ubuntu VPS]
+    VPS --> NginxVPS[Nginx Reverse Proxy]
+    NginxVPS --> PublicApps[Public Applications]
+
+    Workstation[Fedora Workstation] -->|SSH / Git / Virt-Manager| HomeServer[Fedora Home Server]
+    Workstation -->|SSH| VPS
+
+    HomeServer --> Docker[Docker Services]
+    HomeServer --> Monitoring[Monitoring Stack]
+    HomeServer --> Storage[Samba / Storage]
+    HomeServer --> Libvirt[KVM / Libvirt]
+    HomeServer --> LocalNginx[Local Nginx Reverse Proxy]
+    HomeServer --> DNS[Local DNS]
+
+    Docker --> Jellyfin[Jellyfin]
+    Docker --> Calibre[Calibre-Web]
+    Docker --> N8N[n8n]
+    Docker --> Loki[Loki]
+    Docker --> AlloyHome[Alloy]
+
+    Monitoring --> Prometheus[Prometheus]
+    Monitoring --> Grafana[Grafana]
+    Monitoring --> NodeExporter[Node Exporter]
+
+    Libvirt --> RockyVM[Rocky Linux VM]
+    Libvirt --> TestVMs[Test VMs]
+
+    Tailscale[Tailscale Mesh VPN] --> Workstation
+    Tailscale --> HomeServer
+    Tailscale --> VPS
+
+    Grafana --> Prometheus
+    Grafana --> Loki
